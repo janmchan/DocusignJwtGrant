@@ -8,15 +8,11 @@ var configuration = new ConfigurationBuilder()
 const string TokenEndpoint = "https://account-d.docusign.com/oauth/token";
 const string Audience = "account-d.docusign.com";
 
-if (configuration is null)
-{
-    throw new ArgumentNullException(nameof(configuration));
-}
 var parameters = new DocusignJwtParameters
 {
-    ClientId = configuration["clientId"] ?? throw new Exception("ClientId secret missing"),
-    UserId = configuration["userId"],
-    PrivateKey = configuration["privateKey"], //include \r\n from PEM file
+    ClientId = configuration["ClientId"] ?? throw new Exception("ClientId secret missing"),
+    UserId = configuration["UserId"] ?? throw new Exception("UserId secret missing"),
+    PrivateKey = configuration["PrivateKey"] ?? throw new Exception("PrivateKey secret missing"), //include \r\n from PEM file
     TokenEndpoint = TokenEndpoint,
     Audience = Audience
 };
